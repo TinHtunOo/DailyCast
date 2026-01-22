@@ -2,9 +2,10 @@ import type { ForecastItem } from "../types/weather";
 
 interface ForecastCardProps {
   item: ForecastItem;
+  index: number;
 }
 
-export const ForecastCard = ({ item }: ForecastCardProps) => {
+export const ForecastCard = ({ item, index }: ForecastCardProps) => {
   const date = new Date(item.dt * 1000).toLocaleDateString(undefined, {
     weekday: "short",
     month: "short",
@@ -14,20 +15,26 @@ export const ForecastCard = ({ item }: ForecastCardProps) => {
   const condition = item.weather[0];
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow duration-200">
-      <p className="font-medium text-gray-800 mb-2">{date}</p>
-
-      <img
-        className="mx-auto mb-2"
-        src={`https://openweathermap.org/img/wn/${condition.icon}.png`}
-        alt={condition.description}
-      />
-
-      <p className="text-sm capitalize text-gray-700 mb-2">
-        {condition.description}
+    <div
+      className={` flex items-center justify-between p-4 text-center ${index === 4 ? "" : "border-b-2 border-b-slate-700"}  `}
+    >
+      <p className="font-medium text-slate-300">
+        {index === 0 ? "Today" : date.slice(0, 3)}
       </p>
 
-      <p className="text-lg font-semibold text-gray-900">
+      <div className="flex items-center">
+        <img
+          className="mx-auto "
+          src={`https://openweathermap.org/img/wn/${condition.icon}.png`}
+          alt={condition.description}
+        />
+
+        <p className="text-xs capitalize text-slate-500 ">
+          {condition.description}
+        </p>
+      </div>
+
+      <p className="text-sm font-semibold text-slate-50">
         {Math.round(item.main.temp_max)}° / {Math.round(item.main.temp_min)}°
       </p>
     </div>

@@ -7,7 +7,7 @@ export const UnitToggle = ({ unit, onToggle }: UnitToggleProps) => {
   return (
     <button
       onClick={onToggle}
-      className="bg-white/80 hover:bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium transition-colors duration-200 shadow-sm"
+      className="bg-blue-500 hover:cursor-pointer hover:bg-blue-400 text-slate-200  rounded-lg px-4 py-2 text-sm font-medium "
     >
       {unit === "metric" ? "°C" : "°F"}
     </button>

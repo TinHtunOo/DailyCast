@@ -17,11 +17,11 @@ export const Hourly24Forecast = ({ items }: Hourly24ForecastProps) => {
 
   return (
     <div className="mt-6">
-      <h3 className="text-xl font-semibold mb-4 text-gray-800">
-        Next 24 Hours
+      <h3 className="text-xl font-semibold mb-4 text-slate-50">
+        24-hour forecast
       </h3>
 
-      <div className="flex gap-4 overflow-x-auto pb-2">
+      <div className="flex bg-slate-800 rounded-xl overflow-x-auto ">
         {next24Hours.map((item, index) => {
           const time = new Date(item.dt * 1000).toLocaleTimeString([], {
             hour: "2-digit",
@@ -33,23 +33,17 @@ export const Hourly24Forecast = ({ items }: Hourly24ForecastProps) => {
           return (
             <div
               key={item.dt}
-              className="min-w-[120px] bg-white rounded-lg shadow-md p-4 text-center hover:shadow-lg transition-shadow duration-200"
+              className={`min-w-30  p-4 text-center ${index === 7 ? "" : "border-r-2 border-r-slate-700"}`}
             >
-              <p className="text-sm font-medium text-gray-600 mb-2">
-                {index === 0 ? "Now" : time}
-              </p>
+              <p className="text-sm font-medium text-slate-500 ">{time}</p>
 
               <img
-                className="mx-auto mb-2"
+                className="mx-auto  w-20 h-20"
                 src={`https://openweathermap.org/img/wn/${condition.icon}.png`}
                 alt={condition.description}
               />
 
-              <p className="text-sm capitalize text-gray-700 mb-1">
-                {condition.main}
-              </p>
-
-              <p className="text-lg font-semibold text-gray-900">
+              <p className="text-2xl font-semibold text-slate-200">
                 {Math.round(item.main.temp_max)}°
               </p>
             </div>

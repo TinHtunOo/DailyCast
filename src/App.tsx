@@ -20,13 +20,12 @@ function App() {
   useEffect(() => {
     loadLastCity();
   }, []);
-  console.log(current);
   return (
-    <div className="min-h-screen">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white backdrop-blur-sm rounded-xl shadow-2xl sm:p-6 p-2">
+    <div className="min-h-screen bg-slate-900">
+      <div className="max-w-6xl mx-auto">
+        <div className="   sm:p-6 p-2">
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
+            <h1 className="text-3xl font-bold text-center mb-6 text-slate-100">
               DailyCast
             </h1>
             <div className="flex justify-center mb-4">
@@ -43,15 +42,18 @@ function App() {
           )}
 
           {error && (
-            <div className="mt-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            <div className="mt-6 text-center border-red-400 text-red-500 px-4 py-3 ">
               {error}
             </div>
           )}
+          <div className="lg:flex gap-5 ">
+            <div className="lg:max-w-2xl">
+              {current && <CurrentWeather data={current} unit={unit} />}
+              {forecast && <Hourly24Forecast items={forecast.list} />}
+            </div>
 
-          {current && <CurrentWeather data={current} unit={unit} />}
-          {forecast && <Hourly24Forecast items={forecast.list} />}
-
-          {forecast && <ForecastList data={forecast} />}
+            {forecast && <ForecastList data={forecast} />}
+          </div>
         </div>
       </div>
     </div>

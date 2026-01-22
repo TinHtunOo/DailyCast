@@ -11,14 +11,14 @@ export const ForecastList = ({ data }: ForecastListProps) => {
   );
 
   return (
-    <div className="mt-6">
-      <h3 className="text-xl font-semibold mb-4 text-gray-800">
-        5-Day Forecast
+    <div className="mt-6 bg-slate-800 flex-1 p-4 rounded-2xl">
+      <h3 className="text-xl font-semibold mb-4 text-slate-50">
+        5-day forecast
       </h3>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
-        {dailyForecast.map((item) => (
-          <ForecastCard key={item.dt} item={item} />
+      <div className="flex flex-col ">
+        {dailyForecast.map((item, index) => (
+          <ForecastCard key={item.dt} item={item} index={index} />
         ))}
       </div>
     </div>
